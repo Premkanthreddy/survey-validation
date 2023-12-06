@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Feedback Survey</title>
+    <style>
+     
+      @media screen and (max-width: 600px) {
+            form {
+                padding: 10px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            input, textarea, select {
+                font-size: 14px;
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        select {
+            font-size: 16px;
+        }
+        .confirmation-message {
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Product Feedback Survey</h1>
+
+    <form action="submit" method="post" onsubmit="return validateForm()">
+        
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="rating">Overall Rating:</label>
+        <div>
+            <label><input type="radio" name="rating" value="5" required> 5 (Excellent)</label>
+            <label><input type="radio" name="rating" value="4" required> 4 (Very Good)</label>
+            <label><input type="radio" name="rating" value="3" required> 3 (Good)</label>
+            <label><input type="radio" name="rating" value="2" required> 2 (Fair)</label>
+            <label><input type="radio" name="rating" value="1" required> 1 (Poor)</label>
+        </div>
+
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4" required></textarea>
+
+        <label>Would you recommend this product to others?</label>
+        <label><input type="radio" name="recommendation" value="yes" required> Yes</label>
+        <label><input type="radio" name="recommendation" value="no" required> No</label>
+
+<label>Product Features You Liked:</label>
+        <div>
+            <label><input type="checkbox" name="features" value="design"> Design</label>
+            <label><input type="checkbox" name="features" value="performance"> Performance</label>
+            <label><input type="checkbox" name="features" value="usability"> Usability</label>
+            <label><input type="checkbox" name="features" value="durability"> Durability</label>
+        </div>
+
+<label for="productCategory">Preferred Product Category:</label>
+        <select id="productCategory" name="productCategory" required>
+            <option value="" disabled selected>Select a category</option>
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="homeAppliances">Home Appliances</option>
+            <option value="books">Books</option>
+        </select>
+
+
+
+
+        <button type="submit">Submit Feedback</button>
+        
+    </form>
+
+    <div id="confirmationMessage" class="confirmation-message" style="display: none;"></div>
+
+
+
+
+    <script>
+        function validateForm() {
+            var nameInput = document.getElementById('name');
+            var ratingInput = document.querySelector('input[name="rating"]:checked');
+            var featureInputs = document.querySelectorAll('input[name="features"]:checked');
+
+
+            if (!nameInput.value || !ratingInput || featureInputs.length === 0) {
+                alert('Please complete the form before submitting.');
+                return false;
+            }
+
+            if (!ratingInput) {
+                alert('Please select a rating.');
+                return false;
+            }
+
+            if (featureInputs.length === 0) {
+                alert('Please choose at least one product feature.');
+                return false;
+            }
+            var confirmationMessage = document.getElementById('confirmationMessage');
+            confirmationMessage.innerHTML = 'Thank you for your feedback!';
+            confirmationMessage.style.display = 'block';
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>
